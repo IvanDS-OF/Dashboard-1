@@ -33,6 +33,12 @@ RETURN
     vImporteCat - vImporte
 
 
+Division por 0: En caso de que nosotros sepamos con certeza que el DIVISOR nunca va a ser =0, entonces podemos hacer uso de el operador barra "/", en caso de que exista un DIVISOR =0, El resultado sreá infinito, y causará problemas a la hora de representarlo. Ahora si queremos evitar esta situación, lo que podemos hacer es usar la función DIVIDE() ya que nos ayuda a controlar la division por 0
+
+
+Datos en Blanco:
+Para ello podemos hacer uso de
+Nombre de Medida = [Columna1] + 0
 
 
 	Buenas prácticas: 
@@ -76,10 +82,13 @@ Es necesario conocer el sentido de la información
 Caso: Ventas[Contidades] MaU Producto[Precio Catalogo]
 Con esto podemos sacar la siguiente DAX formula
 
+	SENTIDO, Siempre va desde el lado Unico al lado Muchos -Mediante la configuración del modelo tabular es posible mantenerlo así, o lo podemos cambiar de acuerdo a nuestras necesidades haciendo que la relación tenga AMBOS sentidos. Click Secundario en la linea de relación - Propiedades - Relación del filtro Cruzado. 
+
 Importe Catalogo = SUMX(Ventas, Ventas[Cantidades] * RELATED(Producto[Precio Catalogo]))
 
-
-
+DIVIDE(Numerador, Denominador, Valor si es Blank) //Ayuda a no tener errores si el divisor es =0
+DEVIDE(10, 2) //== 5
+DEVIDE(10, 0, 0) // == 0
 
 
 
