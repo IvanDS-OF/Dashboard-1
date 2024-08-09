@@ -1,6 +1,108 @@
 Aqui voy a tomar las notas más importantes relacionadas con el curso: PowerBi - Modelado de datos con DAX
 
 DAX: Data Analysis Expresions
+	Solamente podemos trabajar con tablas o columnas, no es posible trabar con celdas únicas, como en Excel 
+
+DAX nos permite trabaja con operadores matemáticos, lógicos o de cadena (string), 
+
+NO ES RECOMENDABLE CREAR COLUMNAS CALCULADAS PARA EL DESGLOCE DE INFORMACION DE OTRAS COLUMNAS 
+	EJEMPLO: Tenemos una columna fecha, y queremos sacar tanto el Año, mes Dia, para ello podemos crear una nueva columna en duplicado y filtrarlo por el Año Mes Dia, dependiendo. ESO ESTÁ MAl, Para ello podemos hacer la creacion de tablas midiante el uso de Dax. De la siguiente manera: 
+
+CalendarioDAX = 
+ADDCOLUMNS(
+	CALENDAR(
+	DATE (2021, 1, 1),
+	DATE (2022, 12, 31)
+	),
+"AñoDAX", YEAR([Date]),
+"MesDAX", FORMAT([Date], "mmmm"), 
+"DiaDAX", FORMAT([Date], "dddd")
+)
+
+
+Como Nota interesante: Es mejor ordenar ti¿odas las columnas nuevas y Medidas dentro de una tabla nueva, que podemos crear desde nuestro TableView, a la izquierda
+
+	Trabajo con Variables
+Es posible hacer medidas en donde tengamos dentro a variables. Es necesario tener en cuenta las palabras claves VAR y RETURN
+Ejemplo: 
+
+Differencia importe con variables = 
+    VAR vImporte = SUMX( Ventas, Ventas[Cantidades] * Ventas[Precios] ) 
+    VAR vImporteCat = SUMX( Ventas, Ventas[Cantidades] * RELATED(Producto[Precio Catalogo]) )
+RETURN
+    vImporteCat - vImporte
+
+
+
+
+	Buenas prácticas: 
+
+Escribimos el nombre de la tabla y luego el de la columna entre corchetes: Tabla1[Columna1]
+
+Comentarios: //Este es un comentario simple dentro de la caja de texto de DAX
+
+
+
+
+
+
+
+
+
+
+
+
+	Expresiones aprendidas y usadas: 
+
+IN: Sirve para trabajar con conjuntos
+NOT: Negación
+
+Funciones e Agregaciòn:
+SUM
+MIN		(Tabla1[Columna1])
+MAX
+COUNT
+AVERAGE
+
+Agregados especiales
+SUM - Solamente nos permite un argumento que es una tabla
+SUMX - Nos permite una tabla y una expression como argumento - DEVUELVE LA SUMA DE UNA EXPRESION EVALUADA PARA CADA FILA DE UNA TABLA 
+Ejemplo- Calcular la suma de la multiplicación final (Semisuma)
+SUMX(Tabla_a_Recorrer, Expresion)
+Importes = SUMX(Ventas, Ventas[Cantidades] + Ventas[Precios])
+
+Es posible que se quiera hacer uso de esta ultima función pero teniendo una relación entre dos o más tablas separadas. Para ello es necesario tener en consideración lo siguiente: 
+Es necesario conocer el sentido de la información
+Caso: Ventas[Contidades] MaU Producto[Precio Catalogo]
+Con esto podemos sacar la siguiente DAX formula
+
+Importe Catalogo = SUMX(Ventas, Ventas[Cantidades] * RELATED(Producto[Precio Catalogo]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
