@@ -1,0 +1,7 @@
+Aqui voy a tomar las notas más importantes relacionadas con el curso: PowerBi - Modelado de datos con DAX
+
+DAX: Data Analysis Expresions
+
+
+
+
