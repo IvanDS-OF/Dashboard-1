@@ -73,6 +73,23 @@ hayq eu escribir la siguiente formula
 
 
 
+Otra forma de hacer filtros es con el uso de FILTER, pero esta funcion lo que hace es iterar entre la informacio despues de los filtros. Si nosotros usamos dentro del FILTER el argumento [Pais]="Alemania", y luego dentro de los Ribbons nosotros vamos a hacer el filtrado primero por [Pais]="Mexico", la medida nos va a dar BLANCO porque dentro de Mexico ya no encontramos los valores de ALEMANIA, entonces no sirve tan chido. Para ello devemos hacer uso de CALCULATE  y dar un filtro pero por contexto, que este filtro lo que hace es tener siempre presente el contexto que se le da. sin considerar el Ribborn externo exacto que modificaría ese valor. 
+
+
+
+Cuando usamos CALCULATE para generar un filtro de informacion, es usual que los filtros externos no funcionen, es por ello que si queremos que los filtros externos aun funcionen por alguna razon, es necesario hacer uso de KEEPFILTERS. 
+Caso: Importes Altos = CALCULATE(
+	COUNTROWS(Ventas), 
+	Ventas[Cantidades] = Ventas[Precios] >= 500
+) //Usando esta function vamos a ignorar a los filtros externos
+
+Para generar una Medida con resultado inamico ado un filtro externo podemos escribir entonces la siguiente expression
+
+Importes Altos = CALCULATE (
+	COUNTROWS(Ventas), 
+	KEEPFILTERS( Ventas[Cantidades] = Ventas[Pedidos] >= 500 )
+)
+
 
 
 
@@ -128,13 +145,14 @@ DIVIDE(Numerador, Denominador, Valor si es Blank) //Ayuda a no tener errores si 
 DEVIDE(10, 2) //== 5
 DEVIDE(10, 0, 0) // == 0
 
-
-
-
-
-
-
-
+Para obtener el ranking u orden de los elementos podemos hacer uso de:
+RANKX(Tabla que integra, Funcion a evaluar, (Opcional) Orden [ASC o DESC])
+Ejemplo
+RANKX(
+	ALL(Tabla[Columna]), 
+	[Suma precio]
+)
+NOTA: Los datos tienen que ya estar ordenados de tal forma que el 1 corresponda con el precio más bajo y el 10 corresponda con el mayor, es importante tener esto en cuenta ya que de no ser así, podemos tener varios inconvenientees a la hora de hacer el ordenamiento
 
 
 
