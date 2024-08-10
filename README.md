@@ -52,30 +52,30 @@ CALCULATE(
 ## Documentation structure
 
 ### Portada
-Title:
-Owner:
-Function:
-Date:
-Developer:
+> Title:
+> Owner:
+> Function:
+> Date:
+> Developer:
 
 ### Función - Cliente
-Draft
-Source information
-    ][From, Process, Special process, Owner, Path]
-Questions the Dashboard will answer
+> Draft
+> Source information
+>   [From, Process, Special process, Owner, Path]
+> Questions the Dashboard will answer
 
 ### Technical stuff
-Data flow architecture
-Steps
-Measures
-Columns
-Visuals (all of them in a table with)
-    [Name, Filters, Source Information]
+> Data flow architecture
+> Steps
+> Measures
+> Columns
+> Visuals (all of them in a table with)
+>     [Name, Filters, Source Information]
 
 ### Signature
-Project Manager
-Product Owner
-Other - Requester
+> Project Manager
+> Product Owner
+> Other - Requester
 
 
 
