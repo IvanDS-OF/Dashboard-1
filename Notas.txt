@@ -41,7 +41,47 @@ Para ello podemos hacer uso de
 Nombre de Medida = [Columna1] + 0
 
 
-	Buenas prácticas: 
+	SENTIDO, Siempre va desde el lado Unico al lado Muchos -Mediante la configuración del modelo tabular es posible mantenerlo así, o lo podemos cambiar de acuerdo a nuestras necesidades haciendo que la relación tenga AMBOS sentidos. Click Secundario en la linea de relación - Propiedades - Relación del filtro Cruzado. Solo que es ineficiente 
+	Para ello podemos hacer uso de DAX para crear una nueva medida de la siguiente manera
+
+Clientes por productos = 
+CALCULATE(
+	[Cantidad clientes],
+	CROSSFILTER(Ventas[IdCliente], Clientes[IdClientes], BOTH)
+)
+
+
+Contexto de filtros
+Para hacer una medid con DAX y que la medida esté filtrada, tenemos que hacer uso de la function CALCULATE
+
+CALCULATE( Expresión de Cálculo o Medida , (Opcionales) Son Expresiones de filtro que sirven para modificar el contexto de filtro externo en el que se evalua la medida )
+
+Vaya, Sirve para que ese Visual no sea afectado por un filtro externo, Ej: 
+
+Alemania = CALCULATE( [Cantidad], Clientes[Pais] = "Alemania" )
+Esta medida se usa para mostrar el valor en una CARD, y tenemos dentro del reporte un Filtro que tiene la lista de los paises, en caso de que nosotros queramos hacer cambios dentro de este Ribbon no se verá efectuado ningun tipo de cambio a nuestra Card
+
+
+
+Contexto de Fila //
+Cuando quetemos que se hagan sumas teniendo en cuenta el orden por fila, es necesario ahcer uso igualmente de la function CALCULATE
+Caso: Queremos hacer la suma de los valores que nos encontramos por cada Customer, tanto en OverPyament como en Underpayment para saber si el saldo es posit   ivo o negativo. 
+Lo que podemos hacer es colocar esta expresión para logara esa suma
+SumaCustomer = SUM( Tabla[Customer] ) //no 
+hayq eu escribir la siguiente formula  
+	Igualmente podria funcionar 
+
+
+
+
+
+
+
+
+
+
+
+	Buenas prácticas: *******************************************************
 
 Escribimos el nombre de la tabla y luego el de la columna entre corchetes: Tabla1[Columna1]
 
@@ -58,7 +98,7 @@ Comentarios: //Este es un comentario simple dentro de la caja de texto de DAX
 
 
 
-	Expresiones aprendidas y usadas: 
+	Expresiones aprendidas y usadas: *******************************************************
 
 IN: Sirve para trabajar con conjuntos
 NOT: Negación
@@ -81,8 +121,6 @@ Es posible que se quiera hacer uso de esta ultima función pero teniendo una rel
 Es necesario conocer el sentido de la información
 Caso: Ventas[Contidades] MaU Producto[Precio Catalogo]
 Con esto podemos sacar la siguiente DAX formula
-
-	SENTIDO, Siempre va desde el lado Unico al lado Muchos -Mediante la configuración del modelo tabular es posible mantenerlo así, o lo podemos cambiar de acuerdo a nuestras necesidades haciendo que la relación tenga AMBOS sentidos. Click Secundario en la linea de relación - Propiedades - Relación del filtro Cruzado. 
 
 Importe Catalogo = SUMX(Ventas, Ventas[Cantidades] * RELATED(Producto[Precio Catalogo]))
 
