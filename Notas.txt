@@ -20,7 +20,7 @@ ADDCOLUMNS(
 )
 
 
-Como Nota interesante: Es mejor ordenar ti¿odas las columnas nuevas y Medidas dentro de una tabla nueva, que podemos crear desde nuestro TableView, a la izquierda
+Como Nota interesante: Es mejor ordenar todas las columnas nuevas y Medidas dentro de una tabla nueva, que podemos crear desde nuestro TableView, a la izquierda
 
 	Trabajo con Variables
 Es posible hacer medidas en donde tengamos dentro a variables. Es necesario tener en cuenta las palabras claves VAR y RETURN
