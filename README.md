@@ -1,7 +1,11 @@
-# Title of the repo
+# Notes of the project
 
 
 ## Projects
+Dashboard de prueba
+
+Dashboard con información ficticia
+
 
 
 ## Interesting use of DAX in the projects
@@ -46,6 +50,33 @@ CALCULATE(
 
 
 ## Documentation structure
+
+### Portada
+Title:
+Owner:
+Function:
+Date:
+Developer:
+
+### Función - Cliente
+Draft
+Source information
+    ][From, Process, Special process, Owner, Path]
+Questions the Dashboard will answer
+
+### Technical stuff
+Data flow architecture
+Steps
+Measures
+Columns
+Visuals (all of them in a table with)
+    [Name, Filters, Source Information]
+
+### Signature
+Project Manager
+Product Owner
+Other - Requester
+
 
 
 
