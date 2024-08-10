@@ -61,9 +61,10 @@ CALCULATE(
 ### Función - Cliente
 * Draft
 * Source information
-*   [From, Process, Special process, Owner, Path]
+
 | Source | Process | Special process | Owner | Path | 
 | --- | --- | --- | --- | --- |
+
 * Questions the Dashboard will answer
 
 ### Technical stuff
@@ -72,7 +73,7 @@ CALCULATE(
 * Measures
 * Columns
 * Visuals (all of them in a table with)
-    [Name, Filters, Source Information]
+
 | Name | Filters | Source information  |
 | --- | --- | --- |
 
