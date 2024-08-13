@@ -71,6 +71,9 @@ CALCULATE(
 * Data flow architecture
 * Steps
 * Measures
+
+| Name | Photo | DAX Code + Description  |
+
 * Columns
 * Visuals (all of them in a table with)
 
