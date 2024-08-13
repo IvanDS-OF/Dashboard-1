@@ -90,15 +90,25 @@ Importes Altos = CALCULATE (
 	KEEPFILTERS( Ventas[Cantidades] = Ventas[Pedidos] >= 500 )
 )
 
-
-
-
 Como crear medidas ue solamente tengan contemplado el valor de una sola columna y una sola fila y que este sea visible dentro de una tabla
 Podemos hacer uso de la siguiente Dax function
 AUDI Status Underpayment = CALCULATE(SUM(InformationImportatn[Underpayment Amount]), 
     VALUES(InformationImportatn[Customer]), InformationImportatn[Customer] = "AUDI")
 
 La function VALUES nos selecciona de alguna manera la columna para poder trabajar con ella (Filtro de Columa) y el siguiente parametro dentro de CALCULATE nos ayuda a crear el filtro de forma correcta
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -188,13 +198,49 @@ Overpayment A(0, 100) = CALCULATE(
     SUM(InformationImportatn[Overpayment Amount]), //Recordar que esta sera mi informacion base
     KEEPFILTERS(
         FILTER(
-            ALL(
+            ALL(s
                 InformationImportatn[Underpayment Amount], InformationImportatn[Overpayment Amount]
             ),
             InformationImportatn[Underpayment Amount] > 99 || InformationImportatn[Overpayment Amount] > 300
         )
     )
 )
+
+
+ALLSELECTED(Table, Talbe[Column]) - Esta función nos ayuda a poder tener toda la columna seleccionada. Antes, en algunas ocaciones cuando era necesario mostrar tanto el valor que corresponde a una columna como su percentage, era necesario solamente cambiar el formato en como se es mostrado, pero antes daba errores, para ello era necesario hacer uso de la function ALLSELECTED, para así poder mantener todos los valores selccionados y mostrar correctamente l  valor cuando se aplica un filtro externo. 
+Ej:
+% Total AllS = DIVIDE(
+	SUM(Ventas[Cantidades]), 
+	SUMX(
+	ALLSELECTED(Ventas),
+	Ventas[cantidades]	
+	)
+)
+
+
+
+Otra forma interesante de hacer filtros, pero ahora por TABLAS (Crear tablas no relacionadas en base a otras), es posible de dos maneras, una es con IN y otra es con TREATAS
+EJ	IN
+Cantidad 2021 - 2025 = CALCULATE (
+	SUM(TABLA1[Columna1]), 
+	Calendario[AÑO] IN {2021,2025}  //Recordar que siempre s necesario colocar LLAVES
+)
+EJ 	TREATAS		Tiene un buen rendimiento.Puede hacer filtros entre tablas no relacionadas
+Cantidad TreatAs = CALCULATE (
+	SUM(TABLA1[Columna1]),
+	TREATAS (
+	{2021, 2025}, //Los parametros a considerar dentro de la columnaA
+	Calendario(AÑO) //ColumnaA que sera evaluada
+	)
+)
+
+
+
+
+
+
+
+
 
 
 
