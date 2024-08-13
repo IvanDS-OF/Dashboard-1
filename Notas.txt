@@ -123,7 +123,7 @@ Escribimos el nombre de la tabla y luego el de la columna entre corchetes: Tabla
 
 Comentarios: //Este es un comentario simple dentro de la caja de texto de DAX
 
-
+Los filtros siempre se van a propagar desde EL LADO UNO AL LADO MUCHOS
 
 
 
@@ -235,7 +235,15 @@ Cantidad TreatAs = CALCULATE (
 )
 
 
-
+USERELATIONSHIP(Tabla1[Columna1], Tabla2[Columna1]) - Nos sirve para hacer relaciones (en plural) entre dos tablas, usualmente cuando se tienen las tablas en el modelo tabular solamente podemos tener activa una sola relacion, se pueden tener mas de una, pero activas solo una. Es por eso que usamos USERELATIONSHIP para hacer esto posible
+Ej  TENER EN CUENTA QUE LA RELACION, EN EL MODELO TABULAR, SI DEBE DE EXISTIR
+Cantidad Entrega = CALCULATED( //Usamaos esta funcion inicialmente porque es la unnica que nos permite hacer uso de la funcion
+	[Cantidad Orden], 
+	USERELATIONSHIP( //Modificador que permite activar temporalmente una relacion que esta inactiva
+		Calendario[Fecha], 
+		FechasVenta[FechaEntrega]
+	)
+)
 
 
 
