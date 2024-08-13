@@ -93,6 +93,15 @@ Importes Altos = CALCULATE (
 
 
 
+Como crear medidas ue solamente tengan contemplado el valor de una sola columna y una sola fila y que este sea visible dentro de una tabla
+Podemos hacer uso de la siguiente Dax function
+AUDI Status Underpayment = CALCULATE(SUM(InformationImportatn[Underpayment Amount]), 
+    VALUES(InformationImportatn[Customer]), InformationImportatn[Customer] = "AUDI")
+
+La function VALUES nos selecciona de alguna manera la columna para poder trabajar con ella (Filtro de Columa) y el siguiente parametro dentro de CALCULATE nos ayuda a crear el filtro de forma correcta
+
+
+
 
 
 
@@ -155,17 +164,45 @@ RANKX(
 NOTA: Los datos tienen que ya estar ordenados de tal forma que el 1 corresponda con el precio más bajo y el 10 corresponda con el mayor, es importante tener esto en cuenta ya que de no ser así, podemos tener varios inconvenientees a la hora de hacer el ordenamiento
 
 
+VALUES(TalbeName[ColumnName]) - Dentro de la function CALCULATE, nos ayuda a solamente tener seleccionada una sola Columna, para así poder el filtro y los calculos con esta columna
+
+ALL() - Sempre regresa una tabla, sin que sea afectada por los filtros externos aplicados en tiempo de ejecucion
+Caso: Es un modificador de filtro para CALCULATE, Podemos hacer uso de esta para tener siempre seleccionados los datos base de una tabla, o de una columna, o de algunas columnas. Si el parametro que recive es solo la tabla, solo regrsará la tabla, si recibe una columna, recibira solamente los valores de esa columna,y si recibe mas columnas, mandará todos los valores que se intersecten
+EN CASO DE NO RECIBIR ALGUN ARGUMENTO, no generará nungun duplicado, pero actuará como tal porque lo que hará es limpiar los  filtros externos y luego hacer el calculo con la informacion base, lo que seria lo más eficiente 
+REMOVEFILTERS() - Funciona igual que ALL() - Vacio
+
+	Tipos de Filtro
+IF(Condicion, IF YES, IF NOT) - Se establece una condicion a evaluar y dos posibles salidas, True o False, es una operacion ue se realiza de forma fila a fila, REALMENTE NO ES RECOMENDABLE PORQUE OCUPA MUCHO TRABAJO EN CANTIDADES GRANDES DE INFORMACION 
+FILTER(Tabla, Condicion de filtro) - El calculo se realiza solo para las filas de la tabla resultante tras filtrar, pero en caso de que se tome como a tabla la Tabla de Hechos es necesario que en la condicion coloquemos un artefacto para optimizar.ES UNA BUENA OPCION A LA HORA DE HACER FILTROS. 
+CALCULATE (Expresion, Otra expression que puede ser alguna condicion) - Esta condicion primero hace los filtros a partir del 2do parametro, ES UNA MUY BUENA OPCION ya que de igual manera nos ayuda a cambiar el contexto de filtro. 
+CALCULATE + KEEPFILTERS : Es la mejor de todas para hacer algun filtro, ya que es muy eficiente y más rapido que todas las demas. 
+Ej: 
+VALOR MEASURE = CALCULATE(
+	SUM( Tabla1[Columna1] ), 
+	KEEPFILTERS( Tabla2[Columna2] = "Specific Value" )
+)
+EJ2:
+//Para tener en un solo caso lo mejor de los mundos en los filtros, es importante tener en cuenta que podemos hacer filtros dentro e los filtros. SIEMPRE TENIENDO A KEEPFILTER COMO EL FILTRO GLOBAL
+Suma = CALCULATE(
+Overpayment A(0, 100) = CALCULATE(
+    SUM(InformationImportatn[Overpayment Amount]), //Recordar que esta sera mi informacion base
+    KEEPFILTERS(
+        FILTER(
+            ALL(
+                InformationImportatn[Underpayment Amount], InformationImportatn[Overpayment Amount]
+            ),
+            InformationImportatn[Underpayment Amount] > 99 || InformationImportatn[Overpayment Amount] > 300
+        )
+    )
+)
 
 
 
 
 
 
-
-
-
-
-
+		POSIBLES ERRORES: *******************************************************
+Es posible que en algunas ocaciones, a la hora de hacer la relacion entre tablas, encontremos informacion con datos Huerfanos, para esto, lo que hará PowerBi es tomarlas en cuenta, pero los alores serán regresados como valores "En Blanco", a este error se le conoce como "Error o Inclumplimiento de la integridad Referencial"
 
 
 
