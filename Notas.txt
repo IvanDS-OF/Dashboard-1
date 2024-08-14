@@ -98,6 +98,22 @@ AUDI Status Underpayment = CALCULATE(SUM(InformationImportatn[Underpayment Amoun
 La function VALUES nos selecciona de alguna manera la columna para poder trabajar con ella (Filtro de Columa) y el siguiente parametro dentro de CALCULATE nos ayuda a crear el filtro de forma correcta
 
 
+Como vimos casi al inicio de estas notas, es importante tener un calendario disponible para colocar la fecha de hoy y asì colocarla en algun lugar indicando que es la fecha de Refresh màs actual. Y la otra es àra hacer algunos filtros dinmàmicos en function de la fecha. Para ello hay algunas opciones en como se puede hacer esto. 
+Una es Generando una nueva tabla con el Codigo M para indicar cada mes, 
+Otra es generarndo un documento de Excel y ahí colocar las fechas desde el inicio hasta el fin en donde queremos
+Otra es la mejor, CREAR UNA TABLA Y RELLENARLA CON DAX
+	Pasos
+Creamos una nueva tabla desde nuestro reporte
+Y colocamos el siguiente código. 
+Calendario = CALENDAR( Fecha_de_inicio(Año, Mes, Dia) , Fecha_final(Año, Mes, Dia) )
+Calendario = CALENDAR( DATE(2018, 1, 1), DATE(2025, 12, 31) )
+	REALMENTE ES LA MEJOR OPCION PORQUE, A DIFERENCIA DE LA ANTERIOR FORMA, AQUI SI NOS DA LOS VALORES SORTEADOS DE FORMA CORRECTA. 
+CALENDARAUTO - Determina el rango de las fechas de forma automatica,
+
+
+
+
+
 
 
 
