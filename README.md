@@ -45,7 +45,28 @@ CALCULATE(
 )
 ```
 
+### Interesante - Cómo crear una medida de Media Movil usando DAX
 
+Cómo hacer un análisis de media movil, Una Media movil se puede ver de diferentes formas, una es desde el punto de vista de control que puede ser un filtro, otra es desde estadística que se puede tomar como un suavizado
+Lo que hace el filtro de Media movil básicamente es, por cada cierta cantidad de valores datos, va a devolver el promedio, esto sirve más ddentro de un visual que dentro de una tabla. Igualmente sirve bastante para hacer análisis de información de pronóstico sin tantos datos pero que de igual forma sean fieles a la estructura general de la información. 
+
+
+``` Java
+Media Movil 10 dias = 
+VAR UltimosDias = CALCULATETABLE(
+	DATESINPERIOD(
+	Calendario[Fecha], 
+	MAX( Calendario[Fecha] ), 
+	-10, 	//Es el paso de tiempo en Dias
+	DAY	//Aqui se especifica que es en días
+	)
+)
+VAR Inicio = CALCULATE( MIN( Ventas[Fecha] ), REMOVEFILTERS )
+RETURN IF(
+	Inicio <= MINX( UltimosDias, Calendario[Fechas] ), 
+	AVERAGEX( UltimosDias, [Cantidad] )
+)
+```
 
 
 
@@ -66,6 +87,7 @@ CALCULATE(
 | --- | --- | --- | --- | --- |
 
 * Questions the Dashboard will answer
+* Brief Description and Purpose
 
 ### Technical stuff
 * Data flow architecture
@@ -77,10 +99,12 @@ CALCULATE(
 * Columns
 * Visuals (all of them in a table with)
 
-| Name | Filters | Source information  |
-| --- | --- | --- |
+| Name | Type of Visual | Filters | Source information  |
+| --- | --- | --- | --- |
+| Quantity of projects in Progress | Card | Status = In Progress | Data.xlsx |
 
-### Signature
+
+### Signs
 * Project Manager
 * Product Owner
 * Other - Requester
@@ -89,6 +113,10 @@ CALCULATE(
 
 
 ## Resources
+
+I have been taken most of the information from this Linkedin Learning course: 
+
+[PowerBI: Modelado de datos con DAX por Ana Maria Bisbé York](https://www.linkedin.com/learning/power-bi-modelado-de-datos-con-dax)
 
 
 ## Some Images of the project
