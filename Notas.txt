@@ -110,9 +110,23 @@ Calendario = CALENDAR( DATE(2018, 1, 1), DATE(2025, 12, 31) )
 	REALMENTE ES LA MEJOR OPCION PORQUE, A DIFERENCIA DE LA ANTERIOR FORMA, AQUI SI NOS DA LOS VALORES SORTEADOS DE FORMA CORRECTA. 
 CALENDARAUTO - Determina el rango de las fechas de forma automatica,
 
+INTERESANTE - Cómo hacer un análisis de media movil, Una Media movil se puede ver de diferentes formas, una es desde el punto de vista de control que puede ser un filtro, otra es desde estadística que se puede tomar como un suavizado
+Lo que hace el filtro de Media movil básicamente es, por cada cierta cantidad de valores datos, va a devolver el promedio, esto sirve más ddentro de un visual que dentro de una tabla. Igualmente sirve bastante para hacer análisis de información de pronóstico sin tantos datos pero que de igual forma sean fieles a la estructura general de la información. 
 
-
-
+Media Movil 10 dias = 
+VAR UltimosDias = CALCULATETABLE(
+	DATESINPERIOD(
+	Calendario[Fecha], 
+	MAX( Calendario[Fecha] ), 
+	-10, 	//Es el paso de tiempo en Dias
+	DAY	//Aqui se especifica que es en días
+	)
+)
+VAR Inicio = CALCULATE( MIN( Ventas[Fecha] ), REMOVEFILTERS )
+RETURN IF(
+	Inicio <= MINX( UltimosDias, Calendario[Fechas] ), 
+	AVERAGEX( UltimosDias, [Cantidad] )
+)
 
 
 
@@ -260,6 +274,16 @@ Cantidad Entrega = CALCULATED( //Usamaos esta funcion inicialmente porque es la 
 		FechasVenta[FechaEntrega]
 	)
 )
+
+Total Years To Date - Nos ayuda a hacer conglomerado de una expresion en funcion a las fechas, Es bastante util utilizarlo solo ya que por defecto ya cuenta con la integracion de CALCULATE para su empleabilidad. 
+TOTLAYTD( [Cantidad], Calendario[Fechas], AñoFiscal )
+Año fiscal, colocamos la fecha de el término de nuestro año fiscal con el siguiente formato "mm-yy"
+
+MIN, MAX - Igualmente pueden ayudarnos a obtener el valor desado en FECHAS, solamente regresa un solo valor
+FIRSTDATE, LASTDATE - Regresan una tabla, regresan una fecha si, pero regresan una tabla. Ej. 
+Tenemos una tabla que tiene como Headers del lado Izquiero una division por Año, Quarter, Mes, entonces, FIRSTDATE y LASTDATE nos van a regresar los valores correspondientes de el AÑO, el Quartes y el Mes, 
+
+
 
 
 
