@@ -79,22 +79,44 @@ RETURN IF(
 * Date:
 * Developer:
 
-### Función - Cliente
+### Función - Cliente - Negocio
 * Draft
-* Source information
+* Source information (Each of data source, from Excel, SQL, Sharepoint)
 
-| Source | Process | Special process | Owner | Path | 
+| Source | Process | Special process | Owner | Final Storage | 
 | --- | --- | --- | --- | --- |
+| Product owner Onedrive Folder, Data.xlsx | Descriptio, how to upload the information | The Dashboard will be updated everyday at 8:00 hrs | Product Owner | Teams Folder |
+
 
 * Questions the Dashboard will answer
 * Brief Description and Purpose
 
 ### Technical stuff
 * Data flow architecture
+* Information needed
+
+| Name | Source |
+| --- | --- |
+| Projects | Data.xlsx |
+| --- | --- |
+| Status | Data.slsx |
+| --- | --- |
+| Calendar | DAX measure |
+| --- | --- |
+| Average Filter | DAX Column |
+| --- | --- |
+| Saving Sorted | Python script |
+
+
+
 * Steps
 * Measures
 
 | Name | Photo | DAX Code + Description  |
+| --- | --- | --- | 
+| Average Filter | * Photo | ``` DAX Code ``` : This takes the Speed of the team and creates an Average Filter for better visualisation  |
+
+
 
 * Columns
 * Visuals (all of them in a table with)
