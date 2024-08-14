@@ -1,4 +1,4 @@
-# Notes of the project
+# Notes of the repo
 
 
 ## Projects
@@ -14,7 +14,7 @@ Dashboard con información ficticia
 Es posible hacer medidas en donde tengamos dentro a variables. Es necesario tener en cuenta las palabras claves VAR y RETURN
 Ejemplo: 
 
-``` DAX
+``` Java
 Differencia importe con variables = 
     VAR vImporte = SUMX( Ventas, Ventas[Cantidades] * Ventas[Precios] ) 
     VAR vImporteCat = SUMX( Ventas, Ventas[Cantidades] * RELATED(Producto[Precio Catalogo]) )
@@ -24,7 +24,7 @@ RETURN
 
 ### Como crear un calendario para los filtros
 
-``` DAX
+``` Java
 CalendarioDAX = 
 ADDCOLUMNS(
 	CALENDAR(
@@ -38,7 +38,7 @@ ADDCOLUMNS(
 ```
 
 ### Filtros con CALCULATE
-``` DAX
+``` Java
 CALCULATE(
 	[Cantidad clientes],
 	CROSSFILTER(Ventas[IdCliente], Clientes[IdClientes], BOTH)
@@ -98,13 +98,9 @@ RETURN IF(
 | Name | Source |
 | --- | --- |
 | Projects | Data.xlsx |
-| --- | --- |
 | Status | Data.slsx |
-| --- | --- |
 | Calendar | DAX measure |
-| --- | --- |
 | Average Filter | DAX Column |
-| --- | --- |
 | Saving Sorted | Python script |
 
 
@@ -114,11 +110,12 @@ RETURN IF(
 
 | Name | Photo | DAX Code + Description  |
 | --- | --- | --- | 
-| Average Filter | * Photo | ``` DAX Code ``` : This takes the Speed of the team and creates an Average Filter for better visualisation  |
+| Average Filter | **Photo** | ``` DAX Code ```  This takes the Speed of the team and creates an Average Filter for better visualisation  |
+| Saving Sorted | **Photo** | ``` Pytohn code  ```  Description |
 
 
 
-* Columns
+* Columns (Same Measures format table)
 * Visuals (all of them in a table with)
 
 | Name | Type of Visual | Filters | Source information  |
