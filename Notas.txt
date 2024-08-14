@@ -110,7 +110,7 @@ Calendario = CALENDAR( DATE(2018, 1, 1), DATE(2025, 12, 31) )
 	REALMENTE ES LA MEJOR OPCION PORQUE, A DIFERENCIA DE LA ANTERIOR FORMA, AQUI SI NOS DA LOS VALORES SORTEADOS DE FORMA CORRECTA. 
 CALENDARAUTO - Determina el rango de las fechas de forma automatica,
 
-INTERESANTE - Cómo hacer un análisis de media movil, Una Media movil se puede ver de diferentes formas, una es desde el punto de vista de control que puede ser un filtro, otra es desde estadística que se puede tomar como un suavizado
+INTERESANTE - 	Cómo hacer un análisis de media movil, Una Media movil se puede ver de diferentes formas, una es desde el punto de vista de control que puede ser un filtro, otra es desde estadística que se puede tomar como un suavizado
 Lo que hace el filtro de Media movil básicamente es, por cada cierta cantidad de valores datos, va a devolver el promedio, esto sirve más ddentro de un visual que dentro de una tabla. Igualmente sirve bastante para hacer análisis de información de pronóstico sin tantos datos pero que de igual forma sean fieles a la estructura general de la información. 
 
 Media Movil 10 dias = 
@@ -128,6 +128,10 @@ RETURN IF(
 	AVERAGEX( UltimosDias, [Cantidad] )
 )
 
+
+USO DE SEGMENTADORES
+Los segmentadores son sliders que cuentan con valores numericos, y que su valor puede ser variable en tiempo de ejecución pero de igual manera su valor producido puede ser usado como variable dentro de una function DAX. 
+Para la creación de un nuevo segmentador es necesario situarnos en la ventana Modelado - Modeling y seleccionar la opcion New Parameter - Nuevo parametro, solamente falta configurar los elementos que nos pide en la ventana emergente y listo. Es importante tener seleccionada la opcion de Create Slicer antes de continuar. 
 
 
 
