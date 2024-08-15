@@ -7,7 +7,6 @@ Dashboard de prueba
 Dashboard con información ficticia
 
 
-
 ## Interesting use of DAX in the projects
 
 ### Trabajo con Variables
@@ -78,6 +77,36 @@ RETURN IF(
 	AVERAGEX( UltimosDias, [Cantidad] )
 )
 ```
+
+### Segmentadores:
+Los segmentadores son sliders que cuentan con valores numericos, y que su valor puede ser variable en tiempo de ejecución pero de igual manera su valor producido puede ser usado como variable dentro de una function DAX. 
+
+Para la creación de un nuevo segmentador es necesario situarnos en la ventana Modelado - Modeling y seleccionar la opcion New Parameter - Nuevo parametro, solamente falta configurar los elementos que nos pide en la ventana emergente y listo. Es importante tener seleccionada la opcion de Create Slicer antes de continuar. 
+
+Caso: Cuando queremos obtener una comparación etre lla suma de ventas de la fecha en curso, contra la del mes pasado.
+``` Java
+Mes Pasado = CALCULATE(
+	[Cantidad], 
+	PREVIOUSMONNNNTH(Calendaaaario[Fecha])
+)
+```
+
+Ahora si lo queremos hacer tanto din+amico como en 2 o más meses
+
+``` Java
+Hace X Meses = CALCULATE(
+	[Cantidad], 
+	DATEADD(
+		Calendario[Fecha], 
+		-2, //Este valor lo podemos cambiar por el que nos arroja el valor del Segmentador 
+		MONTH
+)
+)
+```
+
+
+
+
 
 
 
