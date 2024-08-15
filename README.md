@@ -24,6 +24,8 @@ RETURN
 
 ### Como crear un calendario para los filtros
 
+El siguiente comando funciona, pero existe el inconveniente de que los valores son de tipo Texto y que a la hora de querer colocarlos dentro de un DropDown nos arrojará la información con un ordenamiento ABC, y no por como van las fechas cuando lo mejor es que esté iniciando con Enero. 
+
 ``` Java
 CalendarioDAX = 
 ADDCOLUMNS(
@@ -36,6 +38,15 @@ ADDCOLUMNS(
 "DiaDAX", FORMAT([Date], "dddd")
 )
 ```
+
+Hay otra forma que corrige el problema del ordenaiento por ABC, y es mediante el siguiente código. 
+
+``` Java
+Calendario = CALENDAR( DATE(2018, 1, 1), DATE(2025, 12, 31) )
+```
+
+De igual manera, este comando se tiene que colocar dentro de la casilla DAX cuando se hace una nueva tabla desde la ventana principal, en donde se visualiza el Reporte
+
 
 ### Filtros con CALCULATE
 ``` Java
