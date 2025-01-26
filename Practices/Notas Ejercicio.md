@@ -37,6 +37,7 @@ Price Manual = LOOKUPVALUE( SALES_MANUAL[price], SALES_MANUAL[transaction_id], S
 ```
 
 | LOOKUPVALUE | Tabla en donde va a buscar | El valor que va a tener de referencia en donde va a ir a buscar | El valor de referencia de la tabla en donde estamos |
+| --- | --- | --- | --- |
 
 * Al final, solamente agregamos otra columna que nos va a dar si los valores en las fias de *price* y *Price Manual* sin iguales o diferentes, pero nos tiene que regresar un valor Booleano, para ello ocupamos el siguiente codigo. 
 
